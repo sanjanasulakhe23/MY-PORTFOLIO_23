@@ -1,35 +1,6 @@
-import { useRef, useState } from "react";
-import emailjs from "emailjs-com";
 import { Mail, Github, Linkedin } from "lucide-react";
 
 export function Contact() {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-
-  const sendEmail = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formRef.current) return;
-
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setStatus("success");
-          formRef.current?.reset();
-        },
-        (error) => {
-          console.error(error);
-          setStatus("error");
-        }
-      );
-  };
-
   const contactInfo = [
     {
       icon: <Mail size={24} />,
@@ -63,7 +34,7 @@ export function Contact() {
           <h2 className="text-3xl sm:text-4xl mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full" />
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
             Whether you have an opportunity, a question, or just want to say hi —
             my inbox is always open.
@@ -81,74 +52,76 @@ export function Contact() {
               className="group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 flex items-center gap-4"
             >
               <div
-                className={`p-4 bg-gradient-to-br ${contact.color} rounded-xl text-white flex-shrink-0 group-hover:scale-110 transition-transform`}
+                className={`p-4 bg-gradient-to-br ${contact.color} rounded-xl text-white flex-shrink-0`}
               >
                 {contact.icon}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-gray-400 mb-1">{contact.label}</p>
-                <p className="text-white truncate group-hover:text-blue-400 transition-colors">
-                  {contact.value}
-                </p>
+                <p className="text-white truncate">{contact.value}</p>
               </div>
             </a>
           ))}
         </div>
+
         {/* Contact Form */}
-<div className="mt-12 max-w-2xl mx-auto">
-  <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-    <h3 className="text-xl text-white mb-6 text-center">
-      Or send me a message
-    </h3>
+        <div className="mt-12 max-w-2xl mx-auto">
+          <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
+            <h3 className="text-xl text-white mb-6 text-center">
+              Or send me a message
+            </h3>
 
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      className="space-y-4"
-    >
-      {/* REQUIRED hidden input */}
-      <input type="hidden" name="form-name" value="contact" />
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              className="space-y-4"
+            >
+              <input type="hidden" name="form-name" value="contact" />
 
-      {/* Bot protection */}
-      <p className="hidden">
-        <label>
-          Don’t fill this out if you're human:
-          <input name="bot-field" />
-        </label>
-      </p>
+              <p className="hidden">
+                <label>
+                  Don’t fill this out if you're human:
+                  <input name="bot-field" />
+                </label>
+              </p>
 
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        required
-        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
-      />
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white"
+              />
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        required
-        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
-      />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white"
+              />
 
-      <textarea
-        name="message"
-        rows={5}
-        placeholder="Your Message"
-        required
-        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 resize-none"
-      ></textarea>
+              <textarea
+                name="message"
+                rows={5}
+                placeholder="Your Message"
+                required
+                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white resize-none"
+              />
 
-      <button
-        type="submit"
-        className="w-full px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
-      >
-        Send Message
-      </button>
-    </form>
-  </div>
-</div>
+              <button
+                type="submit"
+                className="w-full px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
