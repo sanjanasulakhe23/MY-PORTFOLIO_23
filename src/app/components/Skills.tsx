@@ -5,7 +5,7 @@ export function Skills() {
     {
       title: "Programming Languages",
       icon: <Code size={24} />,
-      skills: ["JavaScript", "TypeScript", "Python", "Java", "C++"],
+      skills: ["JavaScript", "Python", "Java", "SQL", "HTML", "CSS"],
       color: "from-blue-500 to-blue-600"
     },
     {
@@ -23,7 +23,7 @@ export function Skills() {
     {
       title: "Tools & Technologies",
       icon: <Wrench size={24} />,
-      skills: ["Git", "Docker", "AWS", "Firebase", "Postman"],
+      skills: ["Git", "AWS", "Firebase", "Postman"],
       color: "from-cyan-500 to-cyan-600"
     }
   ];

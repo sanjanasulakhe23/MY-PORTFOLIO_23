@@ -94,62 +94,61 @@ export function Contact() {
             </a>
           ))}
         </div>
-
         {/* Contact Form */}
-        <div className="mt-12 max-w-2xl mx-auto">
-          <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-            <h3 className="text-xl text-white mb-6 text-center">
-              Or send me a message
-            </h3>
+<div className="mt-12 max-w-2xl mx-auto">
+  <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
+    <h3 className="text-xl text-white mb-6 text-center">
+      Or send me a message
+    </h3>
 
-            <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
-              />
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      className="space-y-4"
+    >
+      {/* REQUIRED hidden input */}
+      <input type="hidden" name="form-name" value="contact" />
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
-              />
+      {/* Bot protection */}
+      <p className="hidden">
+        <label>
+          Don’t fill this out if you're human:
+          <input name="bot-field" />
+        </label>
+      </p>
 
-              <textarea
-                name="message"
-                rows={5}
-                placeholder="Your Message"
-                required
-                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 resize-none"
-              ></textarea>
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+      />
 
-              <button
-                type="submit"
-                className="w-full px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
-              >
-                Send Message
-              </button>
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        required
+        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+      />
 
-              {status === "success" && (
-                <p className="text-green-400 text-center">
-                  ✅ Message sent successfully!
-                </p>
-              )}
+      <textarea
+        name="message"
+        rows={5}
+        placeholder="Your Message"
+        required
+        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 resize-none"
+      ></textarea>
 
-              {status === "error" && (
-                <p className="text-red-400 text-center">
-                  ❌ Failed to send message. Please try again.
-                </p>
-              )}
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
-}
+      <button
+        type="submit"
+        className="w-full px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+      >
+        Send Message
+      </button>
+    </form>
+  </div>
+</div>
