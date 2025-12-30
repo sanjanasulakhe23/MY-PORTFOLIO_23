@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Mail, Github, Linkedin } from "lucide-react";
 
 export function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+
   return (
     <section id="contact" className="py-20 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,56 +26,61 @@ export function Contact() {
               Send me a message
             </h3>
 
-            <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              action="/success"
-              className="space-y-4"
-            >
-              {/* Required */}
-              <input type="hidden" name="form-name" value="contact" />
-
-              {/* Bot protection */}
-              <p className="hidden">
-                <label>
-                  Don’t fill this out:
-                  <input name="bot-field" />
-                </label>
+            {submitted ? (
+              <p className="text-green-400 text-center text-lg">
+                ✅ Message sent successfully! I’ll get back to you soon.
               </p>
-
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white"
-              />
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white"
-              />
-
-              <textarea
-                name="message"
-                rows={5}
-                placeholder="Your Message"
-                required
-                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white resize-none"
-              />
-
-              <button
-                type="submit"
-                className="w-full px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg"
+            ) : (
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={() => setSubmitted(true)}
+                className="space-y-4"
               >
-                Send Message
-              </button>
-            </form>
+                <input type="hidden" name="form-name" value="contact" />
+
+                {/* Bot protection */}
+                <p className="hidden">
+                  <label>
+                    Don’t fill this out:
+                    <input name="bot-field" />
+                  </label>
+                </p>
+
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white"
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  required
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white"
+                />
+
+                <textarea
+                  name="message"
+                  rows={5}
+                  placeholder="Your Message"
+                  required
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white resize-none"
+                />
+
+                <button
+                  type="submit"
+                  className="w-full px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg"
+                >
+                  Send Message
+                </button>
+              </form>
+            )}
 
           </div>
         </div>
